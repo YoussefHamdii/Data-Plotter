@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DraggableContainer from "../DraggableContainer";
+import DropArea from "../DropField";
 
 const DataViewer = () => {
   //Component States
@@ -7,14 +7,17 @@ const DataViewer = () => {
   const [selectedMeasures, setselectedMeasures] = useState([]);
 
   return (
-    <div>
-      <DraggableContainer
-        dragged={selectedDimensions}
-        setDragged={setselectedDimensions}
+    <div className="flex flex-col gap-2 mt-10">
+      <DropArea
+        label="Dimension"
+        droppedElements={selectedDimensions}
+        setDroppedElements={setselectedDimensions}
       />
-      <DraggableContainer
-        dragged={selectedMeasures}
-        setDragged={setselectedMeasures}
+      <DropArea
+        label="Measures"
+        droppedElements={selectedMeasures}
+        setDroppedElements={setselectedMeasures}
+        isMulti
       />
     </div>
   );

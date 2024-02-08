@@ -9,7 +9,7 @@ const MainLayout = () => {
       <span className="w-1/6">
         <ColumnList />
       </span>
-      <span className="w-5/6">
+      <span className="flex justify-center w-full">
         <DataViewer />
       </span>
     </div>

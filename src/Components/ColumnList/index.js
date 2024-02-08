@@ -22,11 +22,14 @@ const ColumnList = () => {
 
   return (
     <>
-      <div className="border border-solid border-slate-900">
+      <h2 className="border border-solid border-gray-400 pl-4 py-3 font-semibold text-lg">
+        Columns
+      </h2>
+      <div className="border border-solid border-gray-400">
         {columns.map((column, index) => (
           <div
             key={index}
-            className="border border-solid border-red-700"
+            className="my-2 mx-8"
             draggable
             onDragStart={(event) => handleOnDrag(event, column)}
           >
