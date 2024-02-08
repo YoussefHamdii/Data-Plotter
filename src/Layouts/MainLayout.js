@@ -9,7 +9,9 @@ const MainLayout = () => {
       <span className="w-1/6">
         <ColumnList />
       </span>
-      <DataViewer />
+      <span className="w-5/6">
+        <DataViewer />
+      </span>
     </div>
   );
 };
