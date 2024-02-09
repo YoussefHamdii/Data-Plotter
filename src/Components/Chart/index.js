@@ -5,6 +5,9 @@ import columnsAPI from "../../API/columns.api";
 import { isEmpty } from "lodash";
 import { capitalizeFirstLetter } from "../../Utils/helperFunctions";
 import { COLUMN_TYPE } from "../../Utils/constants";
+import { NoDataToDisplay } from "react-highcharts-no-data-to-display";
+
+NoDataToDisplay(Highcharts);
 
 const Chart = ({ selectedDimension, selectedMeasures, errors }) => {
   //Components states
@@ -24,6 +27,10 @@ const Chart = ({ selectedDimension, selectedMeasures, errors }) => {
   //Constants
   const CHART_OPTIONS = {
     title: null,
+    chart: {
+      backgroundColor: "#F2F6F4",
+      type: "line",
+    },
     xAxis: {
       type: "category",
       title: {
@@ -45,6 +52,9 @@ const Chart = ({ selectedDimension, selectedMeasures, errors }) => {
         data: isEmpty(errors) ? chartValues : [],
       },
     ],
+    noData: {
+      style: { fontWeight: "bold", fontSize: "15px", color: "#3d4871" },
+    },
     credits: { enabled: false },
   };
 
@@ -67,7 +77,7 @@ const Chart = ({ selectedDimension, selectedMeasures, errors }) => {
     <HighchartsReact
       highcharts={Highcharts}
       options={CHART_OPTIONS}
-      containerProps={{ className: "h-[550px] w-[800px] mt-8" }}
+      containerProps={{ className: "h-[550px] w-[800px] mt-2" }}
     />
   );
 };
