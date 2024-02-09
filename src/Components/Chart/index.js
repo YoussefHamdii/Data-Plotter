@@ -55,6 +55,7 @@ const Chart = ({ selectedDimension, selectedMeasures, errors }) => {
     noData: {
       style: { fontWeight: "bold", fontSize: "15px", color: "#3d4871" },
     },
+    tooltip: { pointFormat: "value: <b>{point.y}</b>" },
     credits: { enabled: false },
   };
 
