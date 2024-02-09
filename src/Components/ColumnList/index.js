@@ -21,11 +21,11 @@ const ColumnList = () => {
   };
 
   return (
-    <>
-      <h2 className="border border-solid border-gray-400 pl-4 py-3 font-semibold text-lg">
+    <div className="border border-solid border-gray-400 h-full">
+      <h2 className="border-b border-gray-400 pl-4 py-3 font-semibold text-lg">
         Columns
       </h2>
-      <div className="border border-solid border-gray-400">
+      <div className="">
         {columns.map((column, index) => (
           <div
             key={index}
@@ -37,7 +37,7 @@ const ColumnList = () => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

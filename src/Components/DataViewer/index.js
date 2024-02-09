@@ -1,23 +1,28 @@
 import React, { useState } from "react";
 import DropArea from "../DropField";
+import Chart from "../Chart";
 
 const DataViewer = () => {
   //Component States
-  const [selectedDimensions, setselectedDimensions] = useState([]);
+  const [selectedDimension, setselectedDimension] = useState({});
   const [selectedMeasures, setselectedMeasures] = useState([]);
 
   return (
-    <div className="flex flex-col gap-2 mt-10">
+    <div className="flex flex-col gap-2 items-center">
       <DropArea
         label="Dimension"
-        droppedElements={selectedDimensions}
-        setDroppedElements={setselectedDimensions}
+        droppedElements={selectedDimension}
+        setDroppedElements={setselectedDimension}
       />
       <DropArea
         label="Measures"
         droppedElements={selectedMeasures}
         setDroppedElements={setselectedMeasures}
         isMulti
+      />
+      <Chart
+        selectedDimension={selectedDimension}
+        selectedMeasures={selectedMeasures}
       />
     </div>
   );

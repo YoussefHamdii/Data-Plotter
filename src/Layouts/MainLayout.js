@@ -6,12 +6,12 @@ const MainLayout = () => {
   //Displays the main layout (Columns on left and the main content on the right) horizontal display
   return (
     <div className="flex">
-      <span className="w-1/6">
+      <div className="w-1/6 h-screen">
         <ColumnList />
-      </span>
-      <span className="flex justify-center w-full">
+      </div>
+      <div className="m-auto">
         <DataViewer />
-      </span>
+      </div>
     </div>
   );
 };
