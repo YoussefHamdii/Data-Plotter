@@ -19,10 +19,10 @@ const Chart = ({ selectedDimension, selectedMeasures, errors }) => {
     )
       getDataValues();
     else setChartValues([]);
-  }, [selectedDimension, selectedMeasures]);
+  }, [selectedDimension, selectedMeasures, errors]);
 
   //Constants
-  const options = {
+  const CHART_OPTIONS = {
     title: null,
     xAxis: {
       type: "category",
@@ -66,7 +66,7 @@ const Chart = ({ selectedDimension, selectedMeasures, errors }) => {
   return (
     <HighchartsReact
       highcharts={Highcharts}
-      options={options}
+      options={CHART_OPTIONS}
       containerProps={{ className: "h-[550px] w-[800px] mt-8" }}
     />
   );

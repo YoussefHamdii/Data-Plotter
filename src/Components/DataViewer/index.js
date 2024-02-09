@@ -42,7 +42,7 @@ const DataViewer = () => {
   };
 
   //Constants
-  const fields = [
+  const FIELDS = [
     {
       label: capitalizeFirstLetter(COLUMN_TYPE.dimension),
       name: COLUMN_TYPE.dimension,
@@ -62,8 +62,9 @@ const DataViewer = () => {
 
   return (
     <div className="flex flex-col gap-2 items-center">
-      {fields.map((field) => (
+      {FIELDS.map((field, index) => (
         <DropArea
+          key={index}
           label={field.label}
           name={field.name}
           droppedElements={field.droppedElements}

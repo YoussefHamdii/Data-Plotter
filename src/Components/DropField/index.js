@@ -1,6 +1,6 @@
 import React from "react";
 import DropArea from "./DropArea";
-import ErrorMessage from "../ErrorMessage";
+import ErrorMessage from "./ErrorMessage";
 
 const DropField = ({
   label,
