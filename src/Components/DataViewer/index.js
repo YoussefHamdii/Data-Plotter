@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import DropArea from "../DropField";
+import DropField from "../DropField";
 import Chart from "../Chart";
 import { isEmpty } from "lodash";
 import { COLUMN_TYPE, MEASURES } from "../../Utils/constants";
@@ -63,7 +63,7 @@ const DataViewer = () => {
   return (
     <div className="flex flex-col gap-2 items-center">
       {FIELDS.map((field, index) => (
-        <DropArea
+        <DropField
           key={index}
           label={field.label}
           name={field.name}
