@@ -1,6 +1,6 @@
 import React from "react";
 
-const DropArea = ({ droppedElements, setDroppedElements, isMulti }) => {
+const DropArea = ({ droppedElements, setDroppedElements, isMulti, errors }) => {
   //Handlers
   const handleOnDrop = (event) => {
     const selectedColumn = JSON.parse(event.dataTransfer.getData("column"));
@@ -21,8 +21,9 @@ const DropArea = ({ droppedElements, setDroppedElements, isMulti }) => {
   const clearDroppedElements = () => {
     setDroppedElements(isMulti ? [] : {});
   };
+
   return (
-    <>
+    <div className="flex">
       <div
         className="flex gap-2 px-2 items-center w-96 h-8 border border-solid border-gray-400"
         onDrop={handleOnDrop}
@@ -32,7 +33,11 @@ const DropArea = ({ droppedElements, setDroppedElements, isMulti }) => {
           ? droppedElements.map((elem, index) => (
               <div
                 key={index}
-                className="border-l-2 border-x-gray-500 px-1 bg-neutral-200"
+                className={`border-l-2 ${
+                  errors?.find((errorElem) => errorElem.name === elem.name)
+                    ? "border-red-600"
+                    : "border-x-gray-500"
+                } px-1 bg-neutral-200`}
               >
                 {elem.name}
               </div>
@@ -45,7 +50,7 @@ const DropArea = ({ droppedElements, setDroppedElements, isMulti }) => {
       >
         Clear
       </button>
-    </>
+    </div>
   );
 };
 

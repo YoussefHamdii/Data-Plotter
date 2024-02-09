@@ -3,14 +3,20 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import columnsAPI from "../../API/columns.api";
 import { isEmpty } from "lodash";
+import { capitalizeFirstLetter } from "../../Utils/helperFunctions";
+import { COLUMN_TYPE } from "../../Utils/constants";
 
-const Chart = ({ selectedDimension, selectedMeasures }) => {
+const Chart = ({ selectedDimension, selectedMeasures, errors }) => {
   //Components states
   const [chartValues, setChartValues] = useState([]);
 
   //Use effects
   useEffect(() => {
-    if (!isEmpty(selectedMeasures) && !isEmpty(selectedDimension))
+    if (
+      !isEmpty(selectedMeasures) &&
+      !isEmpty(selectedDimension) &&
+      isEmpty(errors)
+    )
       getDataValues();
     else setChartValues([]);
   }, [selectedDimension, selectedMeasures]);
@@ -20,15 +26,23 @@ const Chart = ({ selectedDimension, selectedMeasures }) => {
     title: null,
     xAxis: {
       type: "category",
-      title: { text: selectedDimension.name || "Dimension" },
+      title: {
+        text:
+          selectedDimension.name ||
+          capitalizeFirstLetter(COLUMN_TYPE.dimension),
+      },
     },
     yAxis: {
-      title: { text: selectedMeasures.map((elem) => elem.name) || "Measures" },
+      title: {
+        text:
+          selectedMeasures.map((elem) => elem.name) ||
+          capitalizeFirstLetter(COLUMN_TYPE.measure),
+      },
     },
     series: [
       {
         showInLegend: false,
-        data: chartValues,
+        data: isEmpty(errors) ? chartValues : [],
       },
     ],
     credits: { enabled: false },
