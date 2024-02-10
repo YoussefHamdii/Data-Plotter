@@ -25,11 +25,11 @@ const ColumnList = () => {
       <h2 className="border-b border-gray-400 pl-4 py-3 font-semibold text-lg">
         Columns
       </h2>
-      <div className="">
+      <div className="mt-8">
         {columns.map((column, index) => (
           <div
             key={index}
-            className="my-2 mx-8"
+            className="border-l-2 border-x-gray-500 px-2 bg-neutral-200 my-2 mx-8 cursor-pointer"
             draggable
             onDragStart={(event) => handleOnDrag(event, column)}
           >

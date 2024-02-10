@@ -52,7 +52,7 @@ const DropArea = ({
           ? droppedElements.map((elem, index) => (
               <div
                 key={index}
-                className={"border-l-2 border-x-gray-500 px-1 bg-neutral-200"}
+                className={"border-l-2 border-x-gray-500 px-2 bg-neutral-200"}
               >
                 {elem.name}
               </div>
