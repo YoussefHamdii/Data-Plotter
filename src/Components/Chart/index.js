@@ -42,16 +42,14 @@ const Chart = ({ selectedDimension, selectedMeasures }) => {
           capitalizeFirstLetter(COLUMN_TYPE.measure),
       },
     },
-    series: [
-      {
-        showInLegend: false,
-        data: chartValues,
-      },
-    ],
+    series: chartValues.map((measure) => ({
+      name: measure.name,
+      data: measure.values,
+    })),
     noData: {
       style: { fontWeight: "bold", fontSize: "15px", color: "#7F7F7F" },
     },
-    tooltip: { pointFormat: "value: <b>{point.y}</b>" },
+    tooltip: { pointFormat: "{series.name}: <b>{point.y}</b>" },
     credits: { enabled: false },
   };
 
@@ -63,11 +61,24 @@ const Chart = ({ selectedDimension, selectedMeasures }) => {
     };
     const result = await columnsAPI.getDataValues(payload);
     if (!result) return;
-    let dataoptions = [];
-    result.data[0]?.values.forEach((element, index) => {
-      dataoptions.push([element, result.data[1]?.values[index]]);
-    });
-    setChartValues(dataoptions);
+    mapDataValues(result.data);
+  };
+
+  const mapDataValues = (result) => {
+    let chartData = [];
+    let measureData = [];
+
+    const pushMeasureToChartData = (element, index) => {
+      measureData.push([element, result[i]?.values[index]]); //the i var can be used here because it is hoisted
+    };
+
+    //Using for loop to control the starting index of iterations (assuming first index (0) is always the dimension so we start from 1)
+    for (var i = 1; i < result.length; i++) {
+      measureData = [];
+      result[0]?.values.forEach(pushMeasureToChartData);
+      chartData.push({ name: result[i]?.name, values: measureData });
+    }
+    setChartValues(chartData);
   };
 
   return (
