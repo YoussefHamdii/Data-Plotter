@@ -66,15 +66,14 @@ const Chart = ({ selectedDimension, selectedMeasures }) => {
 
   const mapDataValues = (result) => {
     let chartData = [];
-    let measureData = [];
 
     const pushMeasureToChartData = (element, index) => {
-      measureData.push([element, result[i]?.values[index]]); //the i var can be used here because it is hoisted
+      measureData.push([element, result[i]?.values[index]]); //the i and measureData vars can be used here because they are hoisted
     };
 
     //Using for loop to control the starting index of iterations (assuming first index (0) is always the dimension so we start from 1)
     for (var i = 1; i < result.length; i++) {
-      measureData = [];
+      var measureData = [];
       result[0]?.values.forEach(pushMeasureToChartData);
       chartData.push({ name: result[i]?.name, values: measureData });
     }
