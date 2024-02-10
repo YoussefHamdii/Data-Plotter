@@ -1,9 +1,18 @@
 import React from "react";
+import { errorAlert } from "../../Utils/helperFunctions";
 
-const DropArea = ({ droppedElements, setDroppedElements, isMulti, errors }) => {
+const DropArea = ({
+  fieldFunction,
+  droppedElements,
+  setDroppedElements,
+  isMulti,
+}) => {
   //Handlers
   const handleOnDrop = (event) => {
     const selectedColumn = JSON.parse(event.dataTransfer.getData("column"));
+    //Validate value against the field function
+    const isErrorFree = validate(selectedColumn);
+    if (!isErrorFree) return;
     //When in single value mode
     if (!isMulti) {
       setDroppedElements(selectedColumn);
@@ -22,6 +31,16 @@ const DropArea = ({ droppedElements, setDroppedElements, isMulti, errors }) => {
     setDroppedElements(isMulti ? [] : {});
   };
 
+  const validate = (value) => {
+    if (value.function !== fieldFunction) {
+      errorAlert(
+        `Cannot add a ${value.function} in the ${fieldFunction} field`
+      );
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div className="flex">
       <div
@@ -33,11 +52,7 @@ const DropArea = ({ droppedElements, setDroppedElements, isMulti, errors }) => {
           ? droppedElements.map((elem, index) => (
               <div
                 key={index}
-                className={`border-l-2 ${
-                  errors?.find((errorElem) => errorElem.name === elem.name)
-                    ? "border-red-600"
-                    : "border-x-gray-500"
-                } px-1 bg-neutral-200`}
+                className={"border-l-2 border-x-gray-500 px-1 bg-neutral-200"}
               >
                 {elem.name}
               </div>

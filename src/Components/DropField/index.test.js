@@ -10,7 +10,6 @@ describe("Drop field", () => {
         name={COLUMN_TYPE.dimension}
         droppedElements={[]}
         setDroppedElements={[]}
-        errors={{}}
       />
     );
 
@@ -30,7 +29,6 @@ describe("Drop field", () => {
         name={COLUMN_TYPE.dimension}
         droppedElements={state}
         setDroppedElements={setState}
-        errors={{}}
       />
     );
 

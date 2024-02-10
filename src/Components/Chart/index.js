@@ -9,20 +9,16 @@ import { NoDataToDisplay } from "react-highcharts-no-data-to-display";
 
 NoDataToDisplay(Highcharts);
 
-const Chart = ({ selectedDimension, selectedMeasures, errors }) => {
+const Chart = ({ selectedDimension, selectedMeasures }) => {
   //Components states
   const [chartValues, setChartValues] = useState([]);
 
   //Use effects
   useEffect(() => {
-    if (
-      !isEmpty(selectedMeasures) &&
-      !isEmpty(selectedDimension) &&
-      isEmpty(errors)
-    )
+    if (!isEmpty(selectedMeasures) && !isEmpty(selectedDimension))
       getDataValues();
     else setChartValues([]);
-  }, [selectedDimension, selectedMeasures, errors]);
+  }, [selectedDimension, selectedMeasures]);
 
   //Constants
   const CHART_OPTIONS = {
@@ -49,11 +45,11 @@ const Chart = ({ selectedDimension, selectedMeasures, errors }) => {
     series: [
       {
         showInLegend: false,
-        data: isEmpty(errors) ? chartValues : [],
+        data: chartValues,
       },
     ],
     noData: {
-      style: { fontWeight: "bold", fontSize: "15px", color: "#3d4871" },
+      style: { fontWeight: "bold", fontSize: "15px", color: "#7F7F7F" },
     },
     tooltip: { pointFormat: "value: <b>{point.y}</b>" },
     credits: { enabled: false },
